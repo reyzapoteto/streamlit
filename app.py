@@ -212,7 +212,6 @@ def load_model():
     """Load model pipeline XGBoost"""
     return joblib.load("model_prediksi_xgboost.sav")
 
-# digunakan untuk load model yang diambnil dari file SAV ytaitu Xgboost
 
 @st.cache_data
 def load_and_clean_data():
@@ -239,8 +238,6 @@ def load_and_clean_data():
         st.stop()
 
     return df
-
-# data inii digunakan umtuk load data sebelum digunakan dan dianalisis
 
 
 def get_model_features():
@@ -279,7 +276,7 @@ def get_model_features():
         "kota_Tulungagung",
     ]
 
-# data model yang digunakan 
+
 
 # Load data and feature structure
 df = load_and_clean_data()
@@ -300,7 +297,6 @@ def format_idr(value):
     else:
         return f"Rp {value:,.0f}"
 
-# Card Statistik
 
 def card_metric(label, value, suffix="", icon=None):
     icon_html = (
@@ -344,9 +340,6 @@ def page_dashboard():
 
     st.markdown("---")
 
-# ============================================================================================================================================
-
-
     # Row 1: Distribution & Cities
     col1, col2 = st.columns([1.5, 1])
 
@@ -376,8 +369,6 @@ def page_dashboard():
                 hovertemplate="<b>%{y}</b><br>Properties: %{x}<extra></extra>",
             )
         )
-
-
         fig_city.update_layout(
             plot_bgcolor="rgba(0,0,0,0)",
             paper_bgcolor="rgba(0,0,0,0)",
@@ -395,9 +386,6 @@ def page_dashboard():
         )
         st.plotly_chart(fig_city, use_container_width=True)
         st.markdown("</div>", unsafe_allow_html=True)
-
-# ========================================================================================================================
-
 
     with col2:
         st.markdown('<div class="chart-box">', unsafe_allow_html=True)
@@ -447,8 +435,6 @@ def page_dashboard():
         )
         st.plotly_chart(fig_hist, use_container_width=True)
         st.markdown("</div>", unsafe_allow_html=True)
-
-# ============================================================================================================================================
 
     # Row 2: Features
     st.markdown("### Property Features Analysis")
@@ -575,8 +561,6 @@ def page_dashboard():
                 )
             )
 
-
-
             # Add center annotation
             fig_pie.add_annotation(
                 text=f"<b>{sert_counts['Count'].sum():,}</b><br>Total",
@@ -610,14 +594,13 @@ def page_dashboard():
 # ============================
 
 
-
 def page_prediction():
     st.markdown(
         '<h1 style="margin-bottom: 1rem;">🔮 Price Estimator</h1>',
         unsafe_allow_html=True,
     )
     st.markdown(
-        "Enter property details below to estimate its market based on our **XGBoost AI Model**."
+        "Enter property details below to estimate its market based on our *XGBoost AI Model*."
     )
 
     # Input Form Container
@@ -699,7 +682,7 @@ def page_prediction():
                         font-family: 'Outfit', sans-serif;
                     ">{format_idr(pred)}</h1>
                     <p style="color: #059669; font-size: 0.95rem; opacity: 0.9;">
-                        Based on XGBoost Algorithm • Location: {kota}
+                        Based on XGBoost Algorithm dengan Hasil Evaluasi 0,71 • Location: {kota}
                     </p>
                 </div>
             """,
@@ -774,5 +757,5 @@ def main():
         page_prediction()
 
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     main()
